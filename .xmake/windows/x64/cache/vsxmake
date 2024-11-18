@@ -1,0 +1,6 @@
+{
+    modes = "Debug",
+    kind = "vsxmake",
+    archs = "x64",
+    outputdir = "./build"
+}
