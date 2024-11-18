@@ -1,6 +1,0 @@
-{
-    packages = {
-        [[C:\Users\sebalund\AppData\Local\.xmake\packages\g\glfw\3.4\fc47358da159466996f7d289b4cf1b4e]],
-        [[C:\Users\sebalund\AppData\Local\.xmake\packages\i\imgui\v1.91.0-docking\d9e9ddef3ba745949021bac4dd6b3d57]]
-    }
-}

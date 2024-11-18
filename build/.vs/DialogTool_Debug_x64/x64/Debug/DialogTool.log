@@ -1,5 +1,0 @@
-﻿  $xmake config -y  -P . -p windows -m Debug -a x64 -o "build" --vs=2022
-  $xmake build -y  -P .  "DialogTool"
-  [ 50%]: compiling.Debug source\main.cpp
-  [ 83%]: linking.Debug DialogTool_Debug_x64.exe
-  [100%]: build ok, spent 0.5s

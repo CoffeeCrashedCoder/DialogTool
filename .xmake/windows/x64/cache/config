@@ -1,9 +1,0 @@
-{
-    options = {
-        vs = "2022"
-    },
-    recheck = true,
-    mtimes = {
-        ["xmake.lua"] = 1731507373
-    }
-}

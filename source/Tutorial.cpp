@@ -19,10 +19,10 @@ void Tutorial::AppImG()
 		running = true;
 	{
 	
-		ImGui::Text("Hello, world %d", 123);
+		ImGui::Text("Type the question in this box:", 123);
+		ImGui::InputText("string", Subject, IM_ARRAYSIZE(Subject));
 		if (ImGui::Button("Save"));
 			//MySaveFunction();
-		ImGui::InputText("string", buf, IM_ARRAYSIZE(buf));
 
 	}
 	if (running == false)
@@ -30,7 +30,10 @@ void Tutorial::AppImG()
 	if (ImGui::Begin("Choice 1"))
 		running = true;
 	{
-
+		ImGui::Text("Type the first choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
 
 	}
 	if (running == false)
@@ -38,7 +41,10 @@ void Tutorial::AppImG()
 	if (ImGui::Begin("Choice 2"))
 		running = true;
 	{
-
+		ImGui::Text("Type the second choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
 
 	}
 	if (running == false)
@@ -46,10 +52,47 @@ void Tutorial::AppImG()
 	if (ImGui::Begin("Choice 3"))
 		running = true;
 	{
-
-
+		ImGui::Text("Type the third choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
 	}
 	if (running == false)
 	ImGui::End();
+
+	////////////////////////////////
+
+	if (ImGui::Begin("Choice 1.1"))
+		running = true;
+	{
+		ImGui::Text("Type the third choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+	}
+	if (running == false)
+		ImGui::End();
+
+	if (ImGui::Begin("Choice 1.2"))
+		running = true;
+	{
+		ImGui::Text("Type the third choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+	}
+	if (running == false)
+		ImGui::End();
+
+	if (ImGui::Begin("Choice 1.3"))
+		running = true;
+	{
+		ImGui::Text("Type the third choice in this box:", 123);
+		ImGui::InputText("string", Choice, IM_ARRAYSIZE(Choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+	}
+	if (running == false)
+		ImGui::End();
 
 }

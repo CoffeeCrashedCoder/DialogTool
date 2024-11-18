@@ -10,6 +10,7 @@ public:
 
 private:
 	bool running{};
-	char buf[256];
+	char Subject[256];
+	char Choice[256];
 };
 
