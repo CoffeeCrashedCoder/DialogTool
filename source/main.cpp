@@ -72,7 +72,7 @@ int main(int, char**)
 #endif
 
     // Create window with graphics context
-    GLFWwindow* window = glfwCreateWindow(1280, 720, "DialogTool version 0.01", nullptr, nullptr);
+    GLFWwindow* window = glfwCreateWindow(1280, 720, "DialogTool version 0.02", nullptr, nullptr);
     if (window == nullptr)
         return 1;
     glfwMakeContextCurrent(window);

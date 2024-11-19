@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Tutorial
 {
@@ -6,11 +7,29 @@ public:
 	Tutorial();
 	~Tutorial();
 
+	struct Choice;
+
+	struct Subject
+	{
+		char subject[113];
+		int nInt{};
+		Choice* ChoiceStructPtr = new Choice;
+		signed int* nrChoicesPtr = &nrChoices;
+		signed int nrChoices{};
+		std::vector<Choice*> choiceNodes{};
+	};
+
+	struct Choice
+	{
+		char choice[113];
+		std::vector<Subject*> subjectNodes{};
+	};
+
 	void AppImG();
+
+	Subject* Sub = new Subject;
+	Choice* Cho = new Choice;
 
 private:
 	bool running{};
-	char Subject[256];
-	char Choice[256];
 };
-
