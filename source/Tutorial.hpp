@@ -11,24 +11,26 @@ public:
 
 	struct Subject
 	{
-		char subject[113];
+		char subject[113]{};
 		int nInt{};
-		Choice* ChoiceStructPtr = new Choice;
-		signed int* nrChoicesPtr = &nrChoices;
+		Choice* ChoiceStructPtr{ new Choice };
+		signed int* nrChoicesPtr{&nrChoices};
 		signed int nrChoices{};
 		std::vector<Choice*> choiceNodes{};
 	};
 
 	struct Choice
 	{
-		char choice[113];
+		char choice[113]{};
 		std::vector<Subject*> subjectNodes{};
 	};
 
 	void AppImG();
+	void SaveToJson();
+	void LoadFromJson();
 
-	Subject* Sub = new Subject;
-	Choice* Cho = new Choice;
+	Subject* Sub { new Subject };
+	Choice* Cho { new Choice };
 
 private:
 	bool running{};
