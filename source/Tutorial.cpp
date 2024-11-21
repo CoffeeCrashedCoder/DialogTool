@@ -38,7 +38,9 @@ void Tutorial::AppImG()
 		if (ImGui::Button("Save"))
 		{
 			std::string jsonstring = StringJson.dump(1);
-			std::ofstream outFile("../data/dialogs/Dialog.json");
+			//Following path targets from a specific build location and does not save from the current directory
+			//Adding conditional path for developing from this specific device should be concidered
+			std::ofstream outFile("../data/dialogjson/Dialog.json");
 			if (outFile.is_open()) {
 				outFile << jsonstring;
 				outFile.close();
