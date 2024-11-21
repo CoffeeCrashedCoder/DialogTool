@@ -4,8 +4,11 @@
 #include "Tutorial.hpp"
 #include <string>
 #include <iostream>
+#include <nlohmann/json.hpp>
 #include "fstream"
-//#include "json.hpp" xmake crashes
+
+nlohmann::json StringJson{};
+nlohmann::json IntJson{};
 
 Tutorial::Tutorial()
 {
@@ -24,13 +27,23 @@ Tutorial::~Tutorial()
 
 void Tutorial::AppImG()
 {
+	SaveToJson();
+
 	if (ImGui::Begin("Subject"))
 		running = true;
 	{
 	
 		ImGui::Text("Type the question in this box", 123);
 		ImGui::InputText("string", Sub->subject, IM_ARRAYSIZE(Sub->subject));
-		if (ImGui::Button("Save"));
+		if (ImGui::Button("Save"))
+		{
+			std::string jsonstring = StringJson.dump(1);
+			std::ofstream outFile("../data/dialogs/Dialog.json");
+			if (outFile.is_open()) {
+				outFile << jsonstring;
+				outFile.close();
+			}
+		}
 			//MySaveFunction();
 		ImGui::Text("Choice count:", 123);
 		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
@@ -122,10 +135,10 @@ void Tutorial::AppImG()
 
 void Tutorial::SaveToJson()
 {
-	
+	StringJson["Subject"] = Sub->subject;
 }
 
 void Tutorial::LoadFromJson()
 {
-
+	
 }
