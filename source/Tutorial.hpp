@@ -28,10 +28,16 @@ public:
 	void AppImG();
 	void SaveToJson();
 	void LoadFromJson();
+	void PointerHandler();
 
-	Subject* Sub { new Subject };
-	Choice* Cho { new Choice };
+//-------------------POINTERS-------------------//
+	Subject*    Sub         { new Subject };
+	Subject*    Subject2    { new Subject };
+	Choice*     Cho         { new Choice  };
+//-------------------POINTERS-END---------------//
+
 
 private:
 	bool running{};
+	bool developing{false};
 };

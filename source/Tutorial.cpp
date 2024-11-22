@@ -17,35 +17,22 @@ Tutorial::Tutorial()
 
 Tutorial::~Tutorial()
 {
-	Sub->nrChoicesPtr = nullptr;
-	delete Sub->nrChoicesPtr;
-
-	Sub->ChoiceStructPtr = nullptr;
-	delete Sub->ChoiceStructPtr;
-
+	PointerHandler();
 }
 
 void Tutorial::AppImG()
 {
-	SaveToJson();
+	
+	StringJson["Subject"] = Sub->subject;
 
 	if (ImGui::Begin("Subject"))
 		running = true;
 	{
-	
 		ImGui::Text("Type the question in this box", 123);
 		ImGui::InputText("string", Sub->subject, IM_ARRAYSIZE(Sub->subject));
 		if (ImGui::Button("Save"))
-		{
-			std::string jsonstring = StringJson.dump(1);
-			//Following path targets from a specific build location and does not save from the current directory
-			//Adding conditional path for developing from this specific device should be concidered
-			std::ofstream outFile("../data/dialogjson/Dialog.json");
-			if (outFile.is_open()) {
-				outFile << jsonstring;
-				outFile.close();
-			}
-		}
+			SaveToJson();
+		
 			//MySaveFunction();
 		ImGui::Text("Choice count:", 123);
 		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
@@ -137,10 +124,57 @@ void Tutorial::AppImG()
 
 void Tutorial::SaveToJson()
 {
-	StringJson["Subject"] = Sub->subject;
+	{
+		std::string jsonstring = StringJson.dump(10);
+		//change private bool to true while developing and back to false before commiting!
+		if (developing){
+			std::ofstream outFile("../source/Savedjson.json");
+			if (outFile.is_open()) {
+				outFile << jsonstring;
+				outFile.close();
+			}
+		}
+		else {
+			std::ofstream outFile1("../data/dialogjson/Dialog.json");
+			if (outFile1.is_open()) {
+				outFile1 << jsonstring;
+				outFile1.close();
+			}
+		}
+	}
 }
 
 void Tutorial::LoadFromJson()
 {
 	
+}
+
+void Tutorial::PointerHandler()
+{
+	std::vector<Subject*> SubPtrVec{};
+	SubPtrVec.push_back(Sub);
+	SubPtrVec.push_back(Subject2);
+
+	std::vector<Choice*> ChoPtrVec{};
+	ChoPtrVec.push_back(Cho);
+	ChoPtrVec.push_back(Sub->ChoiceStructPtr);
+
+	std::vector<signed int*> SigIntVec{};
+	SigIntVec.push_back(Sub->nrChoicesPtr);
+
+	for (auto& sub : SubPtrVec)
+	{
+		sub = nullptr;
+		delete sub;
+	}
+	for (auto& cho : ChoPtrVec)
+	{
+		cho = nullptr;
+		delete cho;
+	}
+	for (auto& sig : SigIntVec)
+	{
+		sig = nullptr;
+		delete sig;
+	}
 }
