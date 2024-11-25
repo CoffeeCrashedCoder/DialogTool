@@ -130,15 +130,17 @@ void Tutorial::PointerHandler()
 
 ImVec2 Tutorial::FromSubBox()
 {
+	ImVec2 BoxMin = ImGui::GetItemRectMin();
+	ImVec2 BoxMax = ImGui::GetItemRectMax();
+	ImVec2 BoxXY = ImGui::GetItemRectSize();
 
-	ImVec2 box1Pos = ImVec2(250, 150);
-	ImVec2 box1Size = ImVec2(75, 25);
-	
-
+	ImVec2 box1Pos = ImVec2(BoxMax.x + 10, BoxMax.y*5575/6000);
+	ImVec2 box1Size = ImVec2(1, 1);
+	ImGui::SameLine();
 	ImGui::SetCursorScreenPos(box1Pos);
 	ImGui::Button("Box 1", box1Size);
 	
-	return ImVec2(box1Pos.x + box1Size.x / 2, box1Pos.y + box1Size.y / 2);
+	return ImVec2(box1Pos.x + box1Size.x, box1Pos.y + box1Size.y / 2);
 }
 	
 ImVec2 Tutorial::ToChoiceBox()
@@ -182,8 +184,8 @@ void Tutorial::SubjectBox()
 				Sub->choiceNodes.push_back(Sub->ChoiceStructPtr);
 			Sub->nInt = Sub->nrChoices;
 		}
-		ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
 		SubCenter = FromSubBox();
+		ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
 	}
 	if (running == false)
 		ImGui::End();
