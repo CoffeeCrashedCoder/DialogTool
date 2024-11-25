@@ -29,6 +29,16 @@ public:
 	void SaveToJson();
 	void LoadFromJson();
 	void PointerHandler();
+	ImVec2 FromSubBox();
+	ImVec2 ToChoiceBox();
+	void DrawLine(ImVec2&, ImVec2&);
+	void SubjectBox();
+	void Choice1();
+	void Choice2();
+	void Choice3();
+
+	ImVec2 SubCenter{};
+	ImVec2 ChoCenter{};
 
 //-------------------POINTERS-------------------//
 	Subject*    Sub         { new Subject };

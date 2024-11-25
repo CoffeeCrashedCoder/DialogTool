@@ -25,68 +25,16 @@ void Tutorial::AppImG()
 	
 	StringJson["Subject"] = Sub->subject;
 
-	if (ImGui::Begin("Subject"))
-		running = true;
-	{
-		ImGui::Text("Type the question in this box", 123);
-		ImGui::InputText("string", Sub->subject, IM_ARRAYSIZE(Sub->subject));
-		if (ImGui::Button("Save"))
-			SaveToJson();
-		
-			//MySaveFunction();
-		ImGui::Text("Choice count:", 123);
-		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
-		ImGui::SameLine();
-			if (ImGui::Button("Update")) {
-				for (size_t i = 0; i < Sub->choiceNodes.size(); i++)
-				{
-					Sub->choiceNodes.at(i) = nullptr;
-					delete Sub->choiceNodes.at(i);
-				}
-				Sub->choiceNodes.clear();
-				for (size_t i = 0; i < Sub->nrChoices; i++)
-					Sub->choiceNodes.push_back(Sub->ChoiceStructPtr);
-				Sub->nInt = Sub->nrChoices;
-			}
-			ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
-	}
-	if (running == false)
-		ImGui::End();
+	SubjectBox();
+	Choice1();
+	Choice2();
+	Choice3();
+	
+	//-------------------LINES-------------------//
+	
+	DrawLine(SubCenter, ChoCenter);
 
-	if (ImGui::Begin("Choice 1"))
-		running = true;
-	{
-		ImGui::Text("Type the first choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
-
-	}
-	if (running == false)
-		ImGui::End();
-	if (ImGui::Begin("Choice 2"))
-		running = true;
-	{
-		ImGui::Text("Type the second choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
-
-	}
-	if (running == false)
-		ImGui::End();
-	if (ImGui::Begin("choice 3"))
-		running = true;
-	{
-		ImGui::Text("Type the third choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
-	}
-	if (running == false)
-		ImGui::End();
-
-	////////////////////////////////
+	//-------------------LINES-END---------------//
 
 	if (ImGui::Begin("choice 1.1"))
 		running = true;
@@ -120,6 +68,7 @@ void Tutorial::AppImG()
 	}
 	if (running == false)
 		ImGui::End();
+
 }
 
 void Tutorial::SaveToJson()
@@ -177,4 +126,109 @@ void Tutorial::PointerHandler()
 		sig = nullptr;
 		delete sig;
 	}
+}
+
+ImVec2 Tutorial::FromSubBox()
+{
+
+	ImVec2 box1Pos = ImVec2(250, 150);
+	ImVec2 box1Size = ImVec2(75, 25);
+	
+
+	ImGui::SetCursorScreenPos(box1Pos);
+	ImGui::Button("Box 1", box1Size);
+	
+	return ImVec2(box1Pos.x + box1Size.x / 2, box1Pos.y + box1Size.y / 2);
+}
+	
+ImVec2 Tutorial::ToChoiceBox()
+{
+	ImVec2 box2Pos = ImVec2(300, 200);
+	ImVec2 box2Size = ImVec2(75, 25);
+	ImGui::SetCursorScreenPos(box2Pos);
+	ImGui::Button("Box 2", box2Size);
+
+	return ImVec2(box2Pos.x + box2Size.x / 2, box2Pos.y + box2Size.y / 2);
+}
+
+void Tutorial::DrawLine(ImVec2& first, ImVec2& second)
+{
+	ImDrawList* drawAList = ImGui::GetForegroundDrawList();
+	drawAList->AddLine(first, second, IM_COL32(255, 0, 0, 255), 1.f);
+}
+
+void Tutorial::SubjectBox()
+{
+	if (ImGui::Begin("Subject"))
+		running = true;
+	{
+		ImGui::Text("Type the question in this box", 123);
+		ImGui::InputText("string", Sub->subject, IM_ARRAYSIZE(Sub->subject));
+		if (ImGui::Button("Save"))
+			SaveToJson();
+
+		//MySaveFunction();
+		ImGui::Text("Choice count:", 123);
+		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
+		ImGui::SameLine();
+		if (ImGui::Button("Update")) {
+			for (size_t i = 0; i < Sub->choiceNodes.size(); i++)
+			{
+				Sub->choiceNodes.at(i) = nullptr;
+				delete Sub->choiceNodes.at(i);
+			}
+			Sub->choiceNodes.clear();
+			for (size_t i = 0; i < Sub->nrChoices; i++)
+				Sub->choiceNodes.push_back(Sub->ChoiceStructPtr);
+			Sub->nInt = Sub->nrChoices;
+		}
+		ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
+		SubCenter = FromSubBox();
+	}
+	if (running == false)
+		ImGui::End();
+}
+
+void Tutorial::Choice1()
+{
+	if (ImGui::Begin("Choice 1"))
+		running = true;
+	{
+		ImGui::Text("Type the first choice in this box:", 123);
+		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+		ChoCenter = ToChoiceBox();
+	}
+	if (running == false)
+		ImGui::End();
+}
+
+void Tutorial::Choice2()
+{
+	if (ImGui::Begin("Choice 2"))
+		running = true;
+	{
+		ImGui::Text("Type the second choice in this box:", 123);
+		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+
+	}
+	if (running == false)
+		ImGui::End();
+}
+
+void Tutorial::Choice3()
+{
+	if (ImGui::Begin("choice 3"))
+		running = true;
+	{
+		ImGui::Text("Type the third choice in this box:", 123);
+		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
+		if (ImGui::Button("Save"));
+		//MySaveFunction();
+	}
+	if (running == false)
+		ImGui::End();
 }
