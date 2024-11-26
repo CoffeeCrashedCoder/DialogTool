@@ -1,18 +1,19 @@
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "Tutorial.hpp"
 #include <string>
 #include <iostream>
 #include <nlohmann/json.hpp>
 #include "fstream"
+#include "Tutorial.hpp"
+#include "Fishologic.hpp"
 
 nlohmann::json StringJson{};
 nlohmann::json IntJson{};
-
+nlohmann::json Conversation1{};
 Tutorial::Tutorial()
 {
-	
+	Fishologic::Get().SetUpFishMap();
 }
 
 Tutorial::~Tutorial()
@@ -24,7 +25,7 @@ void Tutorial::AppImG()
 {
 	
 	StringJson["Subject"] = Sub->subject;
-
+	
 	SubjectBox();
 	Choice1();
 	Choice2();
@@ -145,7 +146,7 @@ ImVec2 Tutorial::FromSubBox()
 	
 ImVec2 Tutorial::ToChoiceBox()
 {
-	ImVec2 box2Pos = ImVec2(300, 200);
+	ImVec2 box2Pos = ImVec2(ImGui::GetWindowSize().x, ImGui::GetWindowSize().y/2);
 	ImVec2 box2Size = ImVec2(75, 25);
 	ImGui::SetCursorScreenPos(box2Pos);
 	ImGui::Button("Box 2", box2Size);
@@ -164,12 +165,12 @@ void Tutorial::SubjectBox()
 	if (ImGui::Begin("Subject"))
 		running = true;
 	{
-		ImGui::Text("Type the question in this box", 123);
-		ImGui::InputText("string", Sub->subject, IM_ARRAYSIZE(Sub->subject));
+		Fishologic::Get().CharacterNameShake();
+		ImGui::Text("Says: ", 123);
+		ImGui::InputText("", Sub->subject, IM_ARRAYSIZE(Sub->subject));
 		if (ImGui::Button("Save"))
 			SaveToJson();
 
-		//MySaveFunction();
 		ImGui::Text("Choice count:", 123);
 		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
 		ImGui::SameLine();
@@ -233,4 +234,94 @@ void Tutorial::Choice3()
 	}
 	if (running == false)
 		ImGui::End();
+}
+
+void Tutorial::jsonConv()
+{
+	Conversation1 = {
+		{"First",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Second",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Third",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Fourth",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Fifth",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Sixth",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Seventh",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Eight",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Ninth",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}},
+		{"Tenth",
+			{{"Topic", ""},
+				{"Choice1", ""},
+				{"Choice2", ""},
+				{"Choice3", ""},
+				{"Speaker", ""},
+				{"isShaking", ""}}}
+	};
+		
+}
+
+void Tutorial::SaveToCon1()
+{
+	std::vector<std::string> First{};
+	for (size_t i = 0; i < First.size(); i++)
+	{
+		if (i == 0)
+			Conversation1["FirstSpeaking"] = Fishologic::Get().Conversation[0].name;
+		if (i == 1);
+		if (i == 2);
+		if (i == 3);
+	}
 }

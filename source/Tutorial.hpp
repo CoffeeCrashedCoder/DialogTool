@@ -36,6 +36,8 @@ public:
 	void Choice1();
 	void Choice2();
 	void Choice3();
+	void jsonConv();
+	void SaveToCon1();
 
 	ImVec2 SubCenter{};
 	ImVec2 ChoCenter{};
