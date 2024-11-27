@@ -25,7 +25,8 @@ void Tutorial::AppImG()
 {
 	
 	StringJson["Subject"] = Sub->subject;
-	
+	jsonConv();
+	SaveToCon1();
 	SubjectBox();
 	Choice1();
 	Choice2();
@@ -75,7 +76,7 @@ void Tutorial::AppImG()
 void Tutorial::SaveToJson()
 {
 	{
-		std::string jsonstring = StringJson.dump(10);
+		std::string jsonstring = Conversation1.dump(4);
 		//change private bool to true while developing and back to false before commiting!
 		if (developing){
 			std::ofstream outFile("../source/Savedjson.json");
@@ -167,7 +168,7 @@ void Tutorial::SubjectBox()
 	{
 		Fishologic::Get().CharacterNameShake();
 		ImGui::Text("Says: ", 123);
-		ImGui::InputText("", Sub->subject, IM_ARRAYSIZE(Sub->subject));
+		ImGui::InputText("", Fishologic::Get().Conversation[0].Topic, IM_ARRAYSIZE(Fishologic::Get().Conversation[0].Topic));
 		if (ImGui::Button("Save"))
 			SaveToJson();
 
@@ -315,13 +316,13 @@ void Tutorial::jsonConv()
 
 void Tutorial::SaveToCon1()
 {
-	std::vector<std::string> First{};
-	for (size_t i = 0; i < First.size(); i++)
+	for (auto& map : Fishologic::Get().Conversation)
 	{
-		if (i == 0)
-			Conversation1["FirstSpeaking"] = Fishologic::Get().Conversation[0].name;
-		if (i == 1);
-		if (i == 2);
-		if (i == 3);
+		Conversation1[std::to_string(map.first)]["Topic"]     = map.second.Topic;
+		Conversation1[std::to_string(map.first)]["Choice1"]   = map.second.Answer1;
+		Conversation1[std::to_string(map.first)]["Choice2"]   = map.second.Answer2;
+		Conversation1[std::to_string(map.first)]["Choice3"]   = map.second.Answer3;
+		Conversation1[std::to_string(map.first)]["Speaker"]   = map.second.name;
+		Conversation1[std::to_string(map.first)]["isShaking"] = map.second.isShaking;
 	}
 }

@@ -21,7 +21,7 @@ public:
 //Structs --------------------------------
 	struct Talking
 	{
-		std::string Topic{}; //can be a vector for longer conversations
+		char Topic[113]{}; //can be a vector for longer conversations
 		std::string Answer1{};
 		std::string Answer2{};
 		std::string Answer3{};
@@ -38,7 +38,14 @@ public:
 	//Variables --------------------------------
 
 	std::unordered_map<int, Talking> Conversation;
-
+	std::vector<std::string> names
+	{
+		"Tim",				//0
+		"Pikel",			//1
+		"Tuna Vandare",		//2
+		"Sharky",			//3
+		"Puffy"				//4
+	};
 
 	///////////////////////////////////////////////////////
 

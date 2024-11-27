@@ -17,11 +17,16 @@ Fishologic::~Fishologic()
 
 void Fishologic::SetUpFishMap()
 {
-	Conversation[0] = Talking{ "", "", "", "", "Tim", false};
-	Conversation[1] = Talking{ "", "", "", "", "Pikel", false};
-	Conversation[2] = Talking{ "", "", "", "", "Tuna Vandare", false};
-	Conversation[3] = Talking{ "", "", "", "", "Sharky", false};
-	Conversation[4] = Talking{ "", "", "", "", "Puffy", false};
+	Conversation[0] = Talking{ "", "", "", "", names.at(0), false};
+	Conversation[1] = Talking{ "", "", "", "", names.at(1), false};
+	Conversation[2] = Talking{ "", "", "", "", names.at(2), false};
+	Conversation[3] = Talking{ "", "", "", "", names.at(3), false};
+	Conversation[4] = Talking{ "", "", "", "", names.at(4), false};
+	Conversation[5] = Talking{ "", "", "", "", names.at(0), false};
+	Conversation[6] = Talking{ "", "", "", "", names.at(1), false};
+	Conversation[7] = Talking{ "", "", "", "", names.at(2), false};
+	Conversation[8] = Talking{ "", "", "", "", names.at(3), false};
+	Conversation[9] = Talking{ "", "", "", "", names.at(4), false};
 }
 
 void Fishologic::CharacterNameShake()
@@ -31,11 +36,11 @@ void Fishologic::CharacterNameShake()
 		
 		if (ImGui::BeginCombo(" ", selected))
 		{
-			for (size_t i = 0; i < Conversation.size(); i++)
+			for (size_t i = 0; i < names.size(); i++)
 			{
-				if (ImGui::Selectable(Conversation[i].name.c_str()))
+				if (ImGui::Selectable(names.at(i).c_str()))
 				{
-					selected = (Conversation[i].name).c_str();
+					selected = (names.at(i)).c_str();
 					k = i;
 				}
 			}
