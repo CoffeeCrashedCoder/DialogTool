@@ -166,7 +166,7 @@ void Tutorial::SubjectBox()
 	if (ImGui::Begin("Subject"))
 		running = true;
 	{
-		Fishologic::Get().CharacterNameShake();
+		Fishologic::Get().CharacterNameShake(0);
 		ImGui::Text("Says: ", 123);
 		ImGui::InputText("", Fishologic::Get().Conversation[0].Topic, IM_ARRAYSIZE(Fishologic::Get().Conversation[0].Topic));
 		if (ImGui::Button("Save"))
@@ -200,8 +200,8 @@ void Tutorial::Choice1()
 	{
 		ImGui::Text("Type the first choice in this box:", 123);
 		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
+		if (ImGui::Button("Save"))
+			SaveToJson();
 		ChoCenter = ToChoiceBox();
 	}
 	if (running == false)

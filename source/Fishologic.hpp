@@ -34,7 +34,7 @@ public:
 	};
 	//Functions --------------------------------
 	void SetUpFishMap();
-	void CharacterNameShake();
+	void CharacterNameShake(int);
 	//Variables --------------------------------
 
 	std::unordered_map<int, Talking> Conversation;

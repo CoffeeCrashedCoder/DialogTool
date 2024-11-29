@@ -51,5 +51,5 @@ public:
 
 private:
 	bool running{};
-	bool developing{true};
+	bool developing{false};
 };

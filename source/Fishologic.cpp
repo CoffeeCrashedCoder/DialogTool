@@ -29,7 +29,7 @@ void Fishologic::SetUpFishMap()
 	Conversation[9] = Talking{ "", "", "", "", names.at(4), false};
 }
 
-void Fishologic::CharacterNameShake()
+void Fishologic::CharacterNameShake(int convIndex)
 {
 	{
 		ImGui::Text("Who?:");
@@ -41,12 +41,12 @@ void Fishologic::CharacterNameShake()
 				if (ImGui::Selectable(names.at(i).c_str()))
 				{
 					selected = (names.at(i)).c_str();
-					k = i;
+					Conversation[convIndex].name = selected;
 				}
 			}
 			ImGui::EndCombo();
 		};
 	ImGui::Text("Shake: ");
-	ImGui::Checkbox("\n", &Conversation[k].isShaking);
+	ImGui::Checkbox("\n", &Conversation[convIndex].isShaking);
 	}
 }
