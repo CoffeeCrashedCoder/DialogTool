@@ -27,6 +27,11 @@ public:
 		std::string Answer3{};
 		std::string name{};
 		bool isShaking{};
+
+		//-----------------------------------//
+
+		signed int* nrChoicesPtr{ &nrChoices };
+		signed int nrChoices{};
 	};
 	struct Choices
 	{

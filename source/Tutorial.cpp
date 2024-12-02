@@ -25,7 +25,6 @@ void Tutorial::AppImG()
 {
 	
 	StringJson["Subject"] = Sub->subject;
-	jsonConv();
 	SaveToCon1();
 	SubjectBox();
 	Choice1();
@@ -111,7 +110,7 @@ void Tutorial::PointerHandler()
 	ChoPtrVec.push_back(Sub->ChoiceStructPtr);
 
 	std::vector<signed int*> SigIntVec{};
-	SigIntVec.push_back(Sub->nrChoicesPtr);
+	SigIntVec.push_back(nrChoicesPtr);
 
 	for (auto& sub : SubPtrVec)
 	{
@@ -173,7 +172,7 @@ void Tutorial::SubjectBox()
 			SaveToJson();
 
 		ImGui::Text("Choice count:", 123);
-		ImGui::InputInt("int", Sub->nrChoicesPtr, 1);
+		ImGui::InputInt("int", Fishologic::Get().Conversation.at(0).nrChoicesPtr, 1);
 		ImGui::SameLine();
 		if (ImGui::Button("Update")) {
 			for (size_t i = 0; i < Sub->choiceNodes.size(); i++)
@@ -182,9 +181,9 @@ void Tutorial::SubjectBox()
 				delete Sub->choiceNodes.at(i);
 			}
 			Sub->choiceNodes.clear();
-			for (size_t i = 0; i < Sub->nrChoices; i++)
+			for (size_t i = 0; i < Fishologic::Get().Conversation.at(0).nrChoices; i++)
 				Sub->choiceNodes.push_back(Sub->ChoiceStructPtr);
-			Sub->nInt = Sub->nrChoices;
+			Sub->nInt = Fishologic::Get().Conversation.at(0).nrChoices;
 		}
 		SubCenter = FromSubBox();
 		ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
@@ -237,81 +236,14 @@ void Tutorial::Choice3()
 		ImGui::End();
 }
 
-void Tutorial::jsonConv()
+void Tutorial::NewChoices()
 {
-	Conversation1 = {
-		{"First",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Second",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Third",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Fourth",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Fifth",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Sixth",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Seventh",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Eight",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Ninth",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}},
-		{"Tenth",
-			{{"Topic", ""},
-				{"Choice1", ""},
-				{"Choice2", ""},
-				{"Choice3", ""},
-				{"Speaker", ""},
-				{"isShaking", ""}}}
-	};
-		
+	for (size_t i = 0; i < Fishologic::Get().Conversation.at(0).nrChoices; i++)
+	{
+		if (i == 0);
+		//	Fishologic::Choices* Choice
+		//Just make this a vector to push new into pls (or use smart ptrs)
+	}
 }
 
 void Tutorial::SaveToCon1()

@@ -3,8 +3,8 @@
         "Choice1": "",
         "Choice2": "",
         "Choice3": "",
-        "Speaker": "Tim",
-        "Topic": "Hellothere",
+        "Speaker": "Tuna Vandare",
+        "Topic": "hellusdsa",
         "isShaking": true
     },
     "1": {
@@ -13,7 +13,7 @@
         "Choice3": "",
         "Speaker": "Pikel",
         "Topic": "",
-        "isShaking": true
+        "isShaking": false
     },
     "2": {
         "Choice1": "",
@@ -78,85 +78,5 @@
         "Speaker": "Puffy",
         "Topic": "",
         "isShaking": false
-    },
-    "Eight": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Fifth": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "First": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Fourth": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Ninth": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Second": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Seventh": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Sixth": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Tenth": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
-    },
-    "Third": {
-        "Choice1": "",
-        "Choice2": "",
-        "Choice3": "",
-        "Speaker": "",
-        "Topic": "",
-        "isShaking": ""
     }
 }

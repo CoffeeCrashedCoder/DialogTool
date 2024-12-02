@@ -14,8 +14,6 @@ public:
 		char subject[113]{};
 		int nInt{};
 		Choice* ChoiceStructPtr{ new Choice };
-		signed int* nrChoicesPtr{&nrChoices};
-		signed int nrChoices{};
 		std::vector<Choice*> choiceNodes{};
 	};
 
@@ -36,11 +34,13 @@ public:
 	void Choice1();
 	void Choice2();
 	void Choice3();
-	void jsonConv();
+	void NewChoices();
 	void SaveToCon1();
 
 	ImVec2 SubCenter{};
 	ImVec2 ChoCenter{};
+	//std::vector<int> existingChoices{ nrChoices };
+	
 
 //-------------------POINTERS-------------------//
 	Subject*    Sub         { new Subject };
@@ -51,5 +51,5 @@ public:
 
 private:
 	bool running{};
-	bool developing{false};
+	bool developing{true};
 };
