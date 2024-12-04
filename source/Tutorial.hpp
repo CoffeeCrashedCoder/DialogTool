@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 
+
 class Tutorial
 {
 public:
@@ -22,7 +23,6 @@ public:
 		char choice[113]{};
 		std::vector<Subject*> subjectNodes{};
 	};
-
 	void AppImG();
 	void SaveToJson();
 	void LoadFromJson();
@@ -31,10 +31,8 @@ public:
 	ImVec2 ToChoiceBox();
 	void DrawLine(ImVec2&, ImVec2&);
 	void SubjectBox();
-	void Choice1();
-	void Choice2();
-	void Choice3();
-	void NewChoices();
+	
+	
 	void SaveToCon1();
 
 	ImVec2 SubCenter{};
@@ -49,7 +47,7 @@ public:
 //-------------------POINTERS-END---------------//
 
 
-private:
 	bool running{};
+private:
 	bool developing{true};
 };

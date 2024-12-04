@@ -6,14 +6,13 @@
 #include <nlohmann/json.hpp>
 #include "fstream"
 #include "Tutorial.hpp"
-#include "Fishologic.hpp"
 
 nlohmann::json StringJson{};
 nlohmann::json IntJson{};
 nlohmann::json Conversation1{};
 Tutorial::Tutorial()
 {
-	Fishologic::Get().SetUpFishMap();
+	InitialD.SetUpFishMap();
 }
 
 Tutorial::~Tutorial()
@@ -27,9 +26,6 @@ void Tutorial::AppImG()
 	StringJson["Subject"] = Sub->subject;
 	SaveToCon1();
 	SubjectBox();
-	Choice1();
-	Choice2();
-	Choice3();
 	
 	//-------------------LINES-------------------//
 	
@@ -106,11 +102,9 @@ void Tutorial::PointerHandler()
 	SubPtrVec.push_back(Subject2);
 
 	std::vector<Choice*> ChoPtrVec{};
-	ChoPtrVec.push_back(Cho);
 	ChoPtrVec.push_back(Sub->ChoiceStructPtr);
 
-	std::vector<signed int*> SigIntVec{};
-	SigIntVec.push_back(nrChoicesPtr);
+
 
 	for (auto& sub : SubPtrVec)
 	{
@@ -122,11 +116,7 @@ void Tutorial::PointerHandler()
 		cho = nullptr;
 		delete cho;
 	}
-	for (auto& sig : SigIntVec)
-	{
-		sig = nullptr;
-		delete sig;
-	}
+
 }
 
 ImVec2 Tutorial::FromSubBox()
@@ -160,19 +150,19 @@ void Tutorial::DrawLine(ImVec2& first, ImVec2& second)
 	drawAList->AddLine(first, second, IM_COL32(255, 0, 0, 255), 1.f);
 }
 
-void Tutorial::SubjectBox()
+void Tutorial::SubjectBox() //REWORK IN PROGRESS MOVE TO FISHOLOGIC
 {
 	if (ImGui::Begin("Subject"))
 		running = true;
 	{
-		Fishologic::Get().CharacterNameShake(0);
+		InitialD.CharacterNameShake(0);
 		ImGui::Text("Says: ", 123);
-		ImGui::InputText("", Fishologic::Get().Conversation[0].Topic, IM_ARRAYSIZE(Fishologic::Get().Conversation[0].Topic));
+		ImGui::InputText("", InitialD.Conversation[0].Topic, IM_ARRAYSIZE(InitialD.Conversation[0].Topic));
 		if (ImGui::Button("Save"))
 			SaveToJson();
 
 		ImGui::Text("Choice count:", 123);
-		ImGui::InputInt("int", Fishologic::Get().Conversation.at(0).nrChoicesPtr, 1);
+		ImGui::InputInt("int", InitialD.nrChoicesPtr, 1);
 		ImGui::SameLine();
 		if (ImGui::Button("Update")) {
 			for (size_t i = 0; i < Sub->choiceNodes.size(); i++)
@@ -181,9 +171,9 @@ void Tutorial::SubjectBox()
 				delete Sub->choiceNodes.at(i);
 			}
 			Sub->choiceNodes.clear();
-			for (size_t i = 0; i < Fishologic::Get().Conversation.at(0).nrChoices; i++)
+			for (size_t i = 0; i < InitialD.nrChoices; i++)
 				Sub->choiceNodes.push_back(Sub->ChoiceStructPtr);
-			Sub->nInt = Fishologic::Get().Conversation.at(0).nrChoices;
+			Sub->nInt = InitialD.nrChoices;
 		}
 		SubCenter = FromSubBox();
 		ImGui::Text(std::to_string(Sub->nInt).c_str(), 123);
@@ -192,63 +182,11 @@ void Tutorial::SubjectBox()
 		ImGui::End();
 }
 
-void Tutorial::Choice1()
-{
-	if (ImGui::Begin("Choice 1"))
-		running = true;
-	{
-		ImGui::Text("Type the first choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"))
-			SaveToJson();
-		ChoCenter = ToChoiceBox();
-	}
-	if (running == false)
-		ImGui::End();
-}
 
-void Tutorial::Choice2()
-{
-	if (ImGui::Begin("Choice 2"))
-		running = true;
-	{
-		ImGui::Text("Type the second choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
-
-	}
-	if (running == false)
-		ImGui::End();
-}
-
-void Tutorial::Choice3()
-{
-	if (ImGui::Begin("choice 3"))
-		running = true;
-	{
-		ImGui::Text("Type the third choice in this box:", 123);
-		ImGui::InputText("string", Cho->choice, IM_ARRAYSIZE(Cho->choice));
-		if (ImGui::Button("Save"));
-		//MySaveFunction();
-	}
-	if (running == false)
-		ImGui::End();
-}
-
-void Tutorial::NewChoices()
-{
-	for (size_t i = 0; i < Fishologic::Get().Conversation.at(0).nrChoices; i++)
-	{
-		if (i == 0);
-		//	Fishologic::Choices* Choice
-		//Just make this a vector to push new into pls (or use smart ptrs)
-	}
-}
 
 void Tutorial::SaveToCon1()
 {
-	for (auto& map : Fishologic::Get().Conversation)
+	for (auto& map : InitialD.Conversation)
 	{
 		Conversation1[std::to_string(map.first)]["Topic"]     = map.second.Topic;
 		Conversation1[std::to_string(map.first)]["Choice1"]   = map.second.Answer1;

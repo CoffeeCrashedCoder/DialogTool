@@ -6,17 +6,14 @@
 
 #include <vector>
 #include <string>
+#include "Tutorial.hpp"
 
-class Fishologic
+class Fishologic : public Tutorial
 {
 public:
-
-
-	static Fishologic& Get()
-	{
-		return fishinstance;
-	};
+	Fishologic();
 	~Fishologic();
+
 	///////////////////////////////////////////////////////
 //Structs --------------------------------
 	struct Talking
@@ -30,18 +27,21 @@ public:
 
 		//-----------------------------------//
 
+	};
 		signed int* nrChoicesPtr{ &nrChoices };
 		signed int nrChoices{};
-	};
 	struct Choices
 	{
-
+		char choice[113]{};
+		std::vector<Talking*> subjectNodes{};
 	};
 	//Functions --------------------------------
 	void SetUpFishMap();
 	void CharacterNameShake(int);
+	void NewChoices();
+	void ChoiceF();
 	//Variables --------------------------------
-
+	std::vector<Choices*>Answers{};
 	std::unordered_map<int, Talking> Conversation;
 	std::vector<std::string> names
 	{
@@ -54,10 +54,9 @@ public:
 
 	///////////////////////////////////////////////////////
 
+	Tutorial* master;
 private:
-	Fishologic() {};
 
-	static Fishologic fishinstance;
 	bool imguiOn;
 	bool fishBoxImguiOn;
 	const char* selected{};

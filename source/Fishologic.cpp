@@ -8,8 +8,6 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-Fishologic Fishologic::fishinstance;
-
 Fishologic::~Fishologic()
 {
 	Conversation.clear();
@@ -48,5 +46,50 @@ void Fishologic::CharacterNameShake(int convIndex)
 		};
 	ImGui::Text("Shake: ");
 	ImGui::Checkbox("\n", &Conversation[convIndex].isShaking);
+	}
+}
+
+void Fishologic::NewChoices()
+{
+	for (size_t i = 0; i < nrChoices; i++)
+	{
+		Answers.push_back(new Fishologic::Choices);
+	}
+}
+
+void Fishologic::ChoiceF()
+{
+	for (size_t i; i < nrChoices; i++)
+	{
+		std::string tempConcat{ "Choice" };
+		tempConcat += std::to_string(i);
+		if (ImGui::Begin(tempConcat.c_str()))
+			running = true;
+		{
+			ImGui::Text("Type the first choice in this box:", 123);
+			ImGui::InputText("string", Answers.at(i)->choice, IM_ARRAYSIZE(Answers.at(i)->choice));
+			if (ImGui::Button("Save"))
+				SaveToJson();
+			ChoCenter = ToChoiceBox();
+		}
+		if (running == false)
+			ImGui::End();
+	}
+}
+
+void Fishologic::PointerHandlerFish()
+{
+	std::vector<signed int*> SigIntVec{};
+	SigIntVec.push_back(nrChoicesPtr);
+
+	for (auto& sig : SigIntVec)
+	{
+		sig = nullptr;
+		delete sig;
+	}
+	for (auto& Ans : Answers)
+	{
+		Ans = nullptr;
+		delete Ans;
 	}
 }
