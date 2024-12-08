@@ -40,6 +40,7 @@ public:
 	void CharacterNameShake(int);
 	void NewChoices();
 	void ChoiceF();
+	void PointerHandlerFish();
 	//Variables --------------------------------
 	std::vector<Choices*>Answers{};
 	std::unordered_map<int, Talking> Conversation;

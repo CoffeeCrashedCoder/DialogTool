@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
-
+#include "Subject.hpp"
+#include "Choices.hpp"
 
 class Tutorial
 {
@@ -39,11 +40,9 @@ public:
 	ImVec2 ChoCenter{};
 	//std::vector<int> existingChoices{ nrChoices };
 	
-
 //-------------------POINTERS-------------------//
 	Subject*    Sub         { new Subject };
 	Subject*    Subject2    { new Subject };
-	Choice*     Cho         { new Choice  };
 //-------------------POINTERS-END---------------//
 
 

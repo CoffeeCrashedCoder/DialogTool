@@ -8,6 +8,11 @@
 #include <iostream>
 #include <nlohmann/json.hpp>
 
+Fishologic::Fishologic()
+{
+	SetUpFishMap();
+}
+
 Fishologic::~Fishologic()
 {
 	Conversation.clear();

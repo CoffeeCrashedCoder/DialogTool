@@ -12,7 +12,7 @@ nlohmann::json IntJson{};
 nlohmann::json Conversation1{};
 Tutorial::Tutorial()
 {
-	InitialD.SetUpFishMap();
+	
 }
 
 Tutorial::~Tutorial()
